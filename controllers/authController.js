@@ -14,7 +14,7 @@ async function login(req, res) {
       return res.status(401).json({ error: 'Invalid username or password' });
     }
 
-    // Generate access token and refresh token
+    
     const accessToken = jwt.sign({ id: user._id, username: user.username }, config.secretKey, {
       expiresIn: config.accessTokenExpiration
     });
@@ -42,7 +42,7 @@ async function refreshToken(req, res) {
         return res.status(403).json({ error: 'Invalid refresh token' });
       }
 
-      // Generate a new access token
+      // new access token
       const accessToken = jwt.sign({ id: user.id, username: user.username }, config.secretKey, {
         expiresIn: config.accessTokenExpiration
       });
